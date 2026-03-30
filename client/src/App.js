@@ -7,6 +7,7 @@ import Recipe from "./pages/Recipe";
 import AddRecipe from "./pages/AddRecipe";
 import Details from "./pages/Details";
 import Error from "./pages/Error";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "recipe",
+        index: true,
         element: <Recipe />,
       },
       {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
+      <Toaster position='top-right' reverseOrder={false} />
       <RouterProvider router={router} />
     </div>
   );
