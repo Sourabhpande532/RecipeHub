@@ -14,9 +14,13 @@ const corsOption = {
 
 const app = express();
 
+// MIDDLEWARE
 app.use(express.json());
 app.use(cors(corsOption));
 app.use(morgan("dev"));
+
+// APP ROUTES
+app.use("/api", require("./routes/recipe"));
 
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome to server routing library</h1>`);
