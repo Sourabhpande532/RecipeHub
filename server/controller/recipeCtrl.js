@@ -43,3 +43,13 @@ exports.addRecipeToDatabase = async (req, res) => {
     console.error(error);
   }
 };
+
+exports.deleteRecipe = async (req, res, next) => {
+  try {
+    await Recipe.findByIdAndDelete(req.params.id);
+    res.status(200).json({ success: true, message: "Deleted successfully" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({success:false, message: 'Delete server error'})
+  }
+};
