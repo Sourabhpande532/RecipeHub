@@ -32,8 +32,21 @@ const RecipeProvider = ({ children }) => {
       toast.error("Failed to delete");
     }
   };
+
+  const addRecipe = async (data) => {
+    try {
+      await API.post("/api/recipe/add", data);
+      toast.success("Recipe added.");
+      await fetchRecipe();
+    } catch (error) {
+      console.error(error.message);
+      toast.error("Failed to create recipe");
+    }
+  };
+
   return (
-    <RecipeContext.Provider value={{ loading, recipe, deleteRecipe }}>
+    <RecipeContext.Provider
+      value={{ loading, recipe, deleteRecipe, addRecipe }}>
       {children}
     </RecipeContext.Provider>
   );
